@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Rock Paper Scissors</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="topNav">
+      <h1 class="title" onclick="compareAndScore(p1Currently,p2Currently)">🅡 🅞 🅒 🅚 - 🅟 🅐 🅟 🅔 🅡 - 🅢 🅩 🅐</h1>
+      <!-- Upload New Font -->
+    </div>
+
+    <div class="gameboard">
+      <h2 class="rounder">
+        Round <span class="rndNum"> </span> 
+      </h2>
+
+      <div class="infoBlock"></div>
+      <div class="battleContainer">
+        <div class="oneSpace"></div>
+        <div class="twoSpace" onclick="playerTwoChoose()"></div>
+      </div>
+      
+    </div>
+
+    <div class="playerContainer">
+      <div class="playerOne">You</div>
+      <div class="playerTwo">Computer</div>
+    </div>
+    <div class="scoreContainer">
+      <div class="scOne">Score: <span class="pt1">0</span></div>
+      <div class="scTwo">Score: <span class="pt2">0</span></div>
+    </div>
+
+    <script src="app.js" async defer></script>
+  </body>
+</html>

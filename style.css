@@ -1,0 +1,145 @@
+@media (max-width: 1800px) {
+    body {
+      background-color: peru;
+      color:navy;
+    }
+    .topNav{
+      text-align: center;
+      border-radius:22px;
+      border-width:.2px;
+    }
+  }
+  /* ----------------------- */
+
+
+  @media (max-width: 1200px) {
+    body {
+      background-color: lightblue;
+      color:peru;
+    }
+    .topNav{
+      text-align: center;
+      border-radius:22px;
+      border-width:.2px;
+    }
+  }
+
+  /* ---------------------- */
+
+  @media (max-width: 600px) {
+    body {
+      background-color: black;
+      color:white;
+    }
+    .topNav{
+      text-align: center;
+      border-radius:22px;
+      border-width:.2px;
+    }
+  }
+/* ------------------------ */
+/* ------------------------ */
+
+@keyframes pump {
+    0%{
+
+    }
+    50%{
+
+    }
+    100%{
+
+    }
+}
+/* ------------------------ */
+/* ------------------------ */
+
+  .playerContainer,.scoreContainer{
+    display:flex;
+    justify-content: space-around;
+    margin-top:22px;
+  }
+
+.title{
+  font-size:22px;
+}
+
+.gameboard{
+  border:solid white;
+  height:52vh;
+  border-width:.2px;
+  border-radius:22px;
+  margin-top:12px;
+}
+.infoBlock{
+  /* border:solid red; */
+  text-align:center;
+  height:42px;
+  margin:1em;
+}
+.battleContainer{
+  display:flex;
+  justify-content: space-around;
+}
+.oneSpace,.twoSpace{
+  border:solid white;
+  border-width:.2px;
+  height:120px;
+  width:120px;
+  background-color: #333C3F;
+  border-radius:50%;
+  padding:1em;
+}
+.rounder{
+  text-align: right;
+  margin:1em;
+}
+.weapon{
+  width:100%;
+  height:100%;
+}
+.choicerBtn{
+  /* border:solid green; */
+  margin:3em;
+  height:50px;
+  border-radius:22px;
+  color:white;
+  display: flex;
+  justify-content: space-evenly;
+}
+.sBtn{
+  border:solid red;
+  margin:1em;
+  border-radius:22px;
+  color:white;
+  text-align: center;
+}
+.sBtn:hover{
+  border:solid green;
+  margin:1em;
+  border-radius:22px;
+  color:white;
+  text-align: center;
+  font-size:22px;
+  background-color:green;
+  transition:.3s;
+}
+.icon,.icon2,.icon3{
+  border:solid white;
+  border-radius:50%;
+  padding:5px;
+  height:40px;
+  width:40px;
+}
+.icon:hover,.icon2:hover,.icon3:hover{
+  border:solid red;
+  border-width:5px;
+  border-radius:50%;
+  padding:5px;
+  height:40px;
+  width:40px;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
