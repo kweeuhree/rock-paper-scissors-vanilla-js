@@ -1,5 +1,7 @@
 let gameStarted = false;
 let roundCount = 0;
+let userScore = 0;
+let computerScore = 0;
 
 // populate game start button
 const populateStartBtn = () => {
@@ -217,20 +219,68 @@ function setScore(result) {
     const computerSpace = document.querySelector('.twoSpace');
 
     if(result.includes('tie')) {
-        userSpace.style.border = 'solid blue';
-        computerSpace.style.border = 'solid blue';
+        userSpace.style.border = 'solid yellow';
+        computerSpace.style.border = 'solid yellow';
+        adjustScore('tie');
     } else if (result.includes('Computer won.')) {
         computerSpace.style.border = 'solid red';
+        adjustScore('computer');
     } else if(result.includes('User won!')) {
         userSpace.style.border = 'solid purple';
+        adjustScore('user');
     }
 
     setTimeout(() => {
         userSpace.style.border = 'solid white';
         computerSpace.style.border = 'solid white';
-    }, 400);
+    }, 520);
 }
 
+function adjustScore(winner) {
+
+    const displayUserScore = document.querySelector('.pt1');
+    const displayComputerScore = document.querySelector('.pt2');
+
+    if(winner === 'tie') {
+        userScore -= 10;
+        computerScore -= 10;
+    } else if(winner === 'user') {
+        userScore += 10;
+    } else if(winner === 'computer') {
+        computerScore+= 10;
+    }
+
+    displayUserScore.innerHTML = userScore;
+    displayComputerScore.innerHTML = computerScore;
+
+    if (displayUserScore.innerHTML >= 50) {
+        gameOver('User');
+    } else if(displayComputerScore.innerHTML >= 50) {
+        gameOver('Computer')
+    }
+}
+
+function gameOver(winner) {
+    console.log('Game over');
+    console.log(`${winner} won`);
+    console.log(`Total rounds: ${roundCount}`);
+
+    gameStarted = false;
+    resetGame();
+
+    return gameStarted;
+}
+
+function resetGame() {
+    const displayUserScore = document.querySelector('.pt1');
+    const displayComputerScore = document.querySelector('.pt2');
+    
+    roundCount = 0;
+    computerScore = 0;
+    userScore = 0;
+    displayUserScore.innerHTML = 0;
+    displayComputerScore.innerHTML = 0;
+}
 // StartGame
 populateStartBtn();
 
