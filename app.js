@@ -18,7 +18,7 @@ function clickStartButton() {
      
     displayGameResult.innerHTML = '';
     startBtn.remove();
-    
+
     gameStarted = true;
     populateChoiceBox();
 }
@@ -259,9 +259,9 @@ function adjustScore(winner) {
     displayUserScore.innerHTML = userScore;
     displayComputerScore.innerHTML = computerScore;
 
-    if (displayUserScore.innerHTML >= 20) {
+    if (displayUserScore.innerHTML >= 30) {
         gameOver('User');
-    } else if(displayComputerScore.innerHTML >= 20) {
+    } else if(displayComputerScore.innerHTML >= 30) {
         gameOver('Computer')
     }
 }
