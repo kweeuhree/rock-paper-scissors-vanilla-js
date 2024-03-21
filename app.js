@@ -76,7 +76,6 @@ let choices = {
   };
 
 
-
 // define and declare startRound that takes icon id as an argument, the function should 
 // display user choice as a larger icon, display computer choice as a larger icon
 // call game result
@@ -110,9 +109,13 @@ const getComputerChoice = () => {
  function displayUserChoice(userChoice) {
     // Get the userSpace element
     const userSpace = document.querySelector('.oneSpace');
+
+    // Check if an img element already exists in userSpace
+    removeExistingImage(userSpace);
+
+    // Create a new img element
+    imgElement = document.createElement('img');
     
-    // Create an img element
-    const imgElement = document.createElement('img');
     
     // Set the src attribute based on the userChoice id
     switch (userChoice) {
@@ -122,7 +125,7 @@ const getComputerChoice = () => {
         case 'paper':
             imgElement.src = choices.paper.image;
             break;
-        case 'sza':
+        case 'scissors':
             imgElement.src = choices.sza.image;
             break;
         default:
@@ -138,6 +141,8 @@ const getComputerChoice = () => {
 function displayComputerChoice(computerChoice) {
     // Get the userSpace element
     const computerSpace = document.querySelector('.twoSpace');
+
+    removeExistingImage(computerSpace);
     
     // Create an img element
     const imgElement = document.createElement('img');
@@ -150,7 +155,7 @@ function displayComputerChoice(computerChoice) {
         case 'paper':
             imgElement.src = choices.paper.image;
             break;
-        case 'sza':
+        case 'scissors':
             imgElement.src = choices.sza.image;
             break;
         default:
@@ -161,6 +166,14 @@ function displayComputerChoice(computerChoice) {
     // Append the img element to the userSpace
     computerSpace.appendChild(imgElement);
 }  
+
+function removeExistingImage(spaceElement) {
+    const imgElement = spaceElement.querySelector('img');
+    if (imgElement) {
+        // If an img element exists, remove it
+        imgElement.remove();
+    }
+}
 
 //define and declare incrementRound function, it should increment round, display it 
 // in the browser and console
@@ -193,6 +206,29 @@ function determineWinner(userChoice, computerChoice) {
     }
   
     console.log(`Player: ${userChoice}   Computer: ${computerChoice}\n\n${result}`);
+    setScore(result);
+}
+
+//declare and define a function that takes result of a game as an argument 
+// based on result, adjust scores
+function setScore(result) {
+
+    const userSpace = document.querySelector('.oneSpace');
+    const computerSpace = document.querySelector('.twoSpace');
+
+    if(result.includes('tie')) {
+        userSpace.style.border = 'solid blue';
+        computerSpace.style.border = 'solid blue';
+    } else if (result.includes('Computer won.')) {
+        computerSpace.style.border = 'solid red';
+    } else if(result.includes('User won!')) {
+        userSpace.style.border = 'solid purple';
+    }
+
+    setTimeout(() => {
+        userSpace.style.border = 'solid white';
+        computerSpace.style.border = 'solid white';
+    }, 400);
 }
 
 // StartGame
