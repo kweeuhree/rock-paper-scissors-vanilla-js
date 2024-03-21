@@ -8,13 +8,20 @@ const populateStartBtn = () => {
     let startBtn = document.createElement("div");
     startBtn.setAttribute("class", "sBtn");
     startBtn.innerHTML = "Start Game";
-    startBtn.addEventListener("click", () => {
-      gameStarted = true;
-      startBtn.remove();
-      populateChoiceBox();
-    });
     document.body.append(startBtn);
+    startBtn.addEventListener("click", clickStartButton);
   };
+
+function clickStartButton() {
+    const startBtn = document.querySelector(".sBtn");
+    const displayGameResult = document.querySelector('.game-result');
+     
+    displayGameResult.innerHTML = '';
+    startBtn.remove();
+    
+    gameStarted = true;
+    populateChoiceBox();
+}
 
     //populate choice box
 function populateChoiceBox() {
@@ -73,7 +80,7 @@ let choices = {
     sza: {
       name: "Scissors",
       image:
-        "https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/School-Clipart/Scissors_PNG_Image.png?m=1440557701",
+        "https://www.pngall.com/wp-content/uploads/2016/03/Scissor-High-Quality-PNG.png",
     },
   };
 
@@ -193,6 +200,7 @@ function incrementRound() {
 // it should call adjust scores function that will adjust scores accordingly
 
 function determineWinner(userChoice, computerChoice) {
+    const displayGameResult = document.querySelector('.game-result');
     let result;
   
     if (userChoice === computerChoice) {
@@ -207,6 +215,7 @@ function determineWinner(userChoice, computerChoice) {
       result = 'Computer won.'
     }
   
+    displayGameResult.innerHTML = result;
     console.log(`Player: ${userChoice}   Computer: ${computerChoice}\n\n${result}`);
     setScore(result);
 }
@@ -241,10 +250,7 @@ function adjustScore(winner) {
     const displayUserScore = document.querySelector('.pt1');
     const displayComputerScore = document.querySelector('.pt2');
 
-    if(winner === 'tie') {
-        userScore -= 10;
-        computerScore -= 10;
-    } else if(winner === 'user') {
+    if(winner === 'user') {
         userScore += 10;
     } else if(winner === 'computer') {
         computerScore+= 10;
@@ -253,35 +259,49 @@ function adjustScore(winner) {
     displayUserScore.innerHTML = userScore;
     displayComputerScore.innerHTML = computerScore;
 
-    if (displayUserScore.innerHTML >= 50) {
+    if (displayUserScore.innerHTML >= 20) {
         gameOver('User');
-    } else if(displayComputerScore.innerHTML >= 50) {
+    } else if(displayComputerScore.innerHTML >= 20) {
         gameOver('Computer')
     }
 }
 
 function gameOver(winner) {
-    console.log('Game over');
-    console.log(`${winner} won`);
-    console.log(`Total rounds: ${roundCount}`);
+    const displayGameResult = document.querySelector('.game-result');
+    let gameResultString = `Game over<br>${winner} won<br>Total rounds: ${roundCount}`;
+    
+    displayGameResult.innerHTML = gameResultString;
 
     gameStarted = false;
     resetGame();
 
-    return gameStarted;
+    //console log game result
+    console.log('Game over');
+    console.log(`${winner} won`);
+    console.log(`Total rounds: ${roundCount}`);
 }
 
 function resetGame() {
     const displayUserScore = document.querySelector('.pt1');
     const displayComputerScore = document.querySelector('.pt2');
-    
+    let choicer = document.querySelector(".choicerBtn");
+
     roundCount = 0;
     computerScore = 0;
     userScore = 0;
     displayUserScore.innerHTML = 0;
     displayComputerScore.innerHTML = 0;
+
+    choicer.remove();
+    populateStartBtn(); 
 }
+
 // StartGame
-populateStartBtn();
+if (gameStarted) {
+    populateChoiceBox();
+} else {
+    populateStartBtn();
+}
+
 
 
